@@ -4,6 +4,8 @@ import 'package:provider/provider.dart';
 
 import 'firebase_options.dart';
 import 'pages/home_page.dart';
+import 'providers/cart_provider.dart';
+import 'providers/order_provider.dart';
 import 'providers/product_provider.dart';
 import 'theme/app_theme.dart';
 
@@ -16,11 +18,14 @@ void main() async {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (_) => ProductProvider(),
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => ProductProvider()),
+        ChangeNotifierProvider(create: (_) => CartProvider()),
+        ChangeNotifierProvider(create: (_) => OrderProvider()),
+      ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: AppTheme.theme,

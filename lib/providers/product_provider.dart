@@ -26,17 +26,10 @@ class ProductProvider extends ChangeNotifier {
     return _products.where((product) => product.category == category).toList();
   }
 
-  Future<void> addProduct(Product product) {
-    return _firestoreService.createProduct(product.toMap());
-  }
-
-  Future<void> updateProduct(String productId, Map<String, dynamic> data) {
-    return _firestoreService.updateProduct(productId, data);
-  }
-
-  Future<void> deleteProduct(String productId) {
-    return _firestoreService.deleteProduct(productId);
-  }
+  /// Distinct category values actually present among current products, so
+  /// the filter UI reflects real Firestore data instead of a hardcoded list.
+  List<String> get categories =>
+      _products.map((product) => product.category).toSet().toList()..sort();
 
   @override
   void dispose() {

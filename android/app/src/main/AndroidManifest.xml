@@ -1,4 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Required at runtime (all build variants) for Cloud Firestore network access. -->
+    <uses-permission android:name="android.permission.INTERNET"/>
     <application
         android:label="mini_cart"
         android:name="${applicationName}"

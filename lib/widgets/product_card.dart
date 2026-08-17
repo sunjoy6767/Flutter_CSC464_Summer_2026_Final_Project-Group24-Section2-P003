@@ -2,26 +2,14 @@ import 'package:flutter/material.dart';
 
 import '../models/product_model.dart';
 import '../utils/currency_formatter.dart';
+import 'product_image.dart';
 
-/// A single product tile: category icon, name, category, and price.
+/// A single product tile: image, name, category, and price.
 class ProductCard extends StatelessWidget {
   const ProductCard({super.key, required this.product, this.onTap});
 
   final Product product;
   final VoidCallback? onTap;
-
-  IconData get _categoryIcon {
-    switch (product.category) {
-      case 'Peripherals':
-        return Icons.keyboard;
-      case 'Storage':
-        return Icons.sd_storage;
-      case 'Accessories':
-        return Icons.cable;
-      default:
-        return Icons.devices_other;
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -36,18 +24,9 @@ class ProductCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Expanded(
-                child: DecoratedBox(
-                  decoration: BoxDecoration(
-                    color: theme.colorScheme.primary.withValues(alpha: 0.12),
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                  child: Center(
-                    child: Icon(
-                      _categoryIcon,
-                      size: 40,
-                      color: theme.colorScheme.primary,
-                    ),
-                  ),
+                child: ProductImage(
+                  imageUrl: product.imageUrl,
+                  category: product.category,
                 ),
               ),
               const SizedBox(height: 10),

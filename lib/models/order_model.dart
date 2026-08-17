@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 class OrderItem {
   final String productId;
   final String name;
@@ -38,7 +40,7 @@ class OrderModel {
   final List<OrderItem> items;
   final double total;
   final String status;
-  final dynamic createdAt;
+  final DateTime? createdAt;
 
   OrderModel({
     required this.orderId,
@@ -51,15 +53,21 @@ class OrderModel {
     this.createdAt,
   });
 
-  Map<String, dynamic> toMap() {
-    return {
-      'customerName': customerName,
-      'customerPhone': customerPhone,
-      'customerAddress': customerAddress,
-      'items': items.map((x) => x.toMap()).toList(),
-      'total': total,
-      'status': status,
-      'createdAt': createdAt,
-    };
+  factory OrderModel.fromFirestore(DocumentSnapshot<Map<String, dynamic>> doc) {
+    final data = doc.data() ?? <String, dynamic>{};
+    final rawItems = data['items'] as List<dynamic>? ?? [];
+    final createdAtValue = data['createdAt'];
+    return OrderModel(
+      orderId: doc.id,
+      customerName: data['customerName'] ?? '',
+      customerPhone: data['customerPhone'] ?? '',
+      customerAddress: data['customerAddress'] ?? '',
+      items: rawItems
+          .map((item) => OrderItem.fromMap(item as Map<String, dynamic>))
+          .toList(),
+      total: (data['total'] as num?)?.toDouble() ?? 0.0,
+      status: data['status'] ?? 'placed',
+      createdAt: createdAtValue is Timestamp ? createdAtValue.toDate() : null,
+    );
   }
 }
