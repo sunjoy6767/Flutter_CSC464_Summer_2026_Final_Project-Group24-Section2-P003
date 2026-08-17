@@ -5,7 +5,7 @@ import 'package:provider/provider.dart';
 import 'firebase_options.dart';
 import 'pages/home_page.dart';
 import 'providers/product_provider.dart';
-import 'theme/light_mode.dart';
+import 'theme/app_theme.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
       create: (_) => ProductProvider(),
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        theme: lightMode,
+        theme: AppTheme.theme,
         initialRoute: '/',
         routes: {'/': (context) => const HomePage()},
       ),
