@@ -3,8 +3,8 @@ import 'package:provider/provider.dart';
 
 import '../providers/product_provider.dart';
 import '../widgets/product_card.dart';
-import 'add_edit_product_page.dart';
 import 'product_detail_page.dart';
+import 'product_form_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -91,7 +91,7 @@ class _HomePageState extends State<HomePage> {
         onPressed: () {
           Navigator.of(
             context,
-          ).push(MaterialPageRoute(builder: (_) => const AddEditProductPage()));
+          ).push(MaterialPageRoute(builder: (_) => const ProductFormPage()));
         },
         tooltip: 'Add product',
         child: const Icon(Icons.add),
