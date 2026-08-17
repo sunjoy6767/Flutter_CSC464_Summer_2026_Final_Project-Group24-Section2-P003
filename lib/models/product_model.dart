@@ -1,38 +1,47 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+
+/// Matches the "products" collection schema — see
+/// lib/services/firestore_service.dart for the full schema comment.
 class Product {
   final String id;
   final String name;
-  final double price;
   final String category;
-  final String imageUrl;
+  final double price;
   final String description;
+  final String imageUrl;
+  final int stock;
 
   Product({
     required this.id,
     required this.name,
-    required this.price,
     required this.category,
-    required this.imageUrl,
+    required this.price,
     required this.description,
+    required this.imageUrl,
+    required this.stock,
   });
 
-  factory Product.fromMap(Map<String, dynamic> data, String documentId) {
+  factory Product.fromFirestore(DocumentSnapshot<Map<String, dynamic>> doc) {
+    final data = doc.data() ?? <String, dynamic>{};
     return Product(
-      id: documentId,
+      id: doc.id,
       name: data['name'] ?? '',
-      price: (data['price'] as num?)?.toDouble() ?? 0.0,
       category: data['category'] ?? '',
-      imageUrl: data['imageUrl'] ?? '',
+      price: (data['price'] as num?)?.toDouble() ?? 0.0,
       description: data['description'] ?? '',
+      imageUrl: data['imageUrl'] ?? '',
+      stock: (data['stock'] as num?)?.toInt() ?? 0,
     );
   }
 
   Map<String, dynamic> toMap() {
     return {
       'name': name,
-      'price': price,
       'category': category,
-      'imageUrl': imageUrl,
+      'price': price,
       'description': description,
+      'imageUrl': imageUrl,
+      'stock': stock,
     };
   }
 }
