@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "796366672440",
+    "project_id": "byteshop-b015c",
+    "storage_bucket": "byteshop-b015c.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:796366672440:android:4f2897f16e384762c4cccd",
+        "android_client_info": {
+          "package_name": "com.example.mini_cart"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBIRrLGc2pYz9FF8EedbaFt7UK4FOudKiY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,13 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // WARNING: NOT PRODUCTION SAFE — open read/write for coursework only.
+    // Anyone with the project config can read or overwrite every document
+    // in this project. Do not reuse these rules beyond this class
+    // assignment; a real app needs auth-gated rules (e.g.
+    // request.auth != null) and field-level validation.
+    match /{document=**} {
+      allow read, write: if true;
+    }
+  }
+}
