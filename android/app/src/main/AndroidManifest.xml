@@ -2,7 +2,7 @@
     <!-- Required at runtime (all build variants) for Cloud Firestore network access. -->
     <uses-permission android:name="android.permission.INTERNET"/>
     <application
-        android:label="mini_cart"
+        android:label="ByteShop"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

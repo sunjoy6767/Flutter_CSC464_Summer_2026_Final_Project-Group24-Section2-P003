@@ -1,6 +1,6 @@
 {
-    "name": "mini_cart",
-    "short_name": "mini_cart",
+    "name": "ByteShop",
+    "short_name": "ByteShop",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
