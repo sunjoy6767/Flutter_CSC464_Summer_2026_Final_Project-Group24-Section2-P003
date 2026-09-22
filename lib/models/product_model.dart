@@ -1,7 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-/// Matches the "products" collection schema — see
-/// lib/services/firestore_service.dart for the full schema comment.
 class Product {
   final String id;
   final String name;

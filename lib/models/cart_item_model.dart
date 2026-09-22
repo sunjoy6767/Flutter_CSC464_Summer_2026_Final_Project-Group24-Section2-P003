@@ -1,4 +1,4 @@
-/// A line item in the local (in-memory) shopping cart.
+
 class CartItem {
   const CartItem({
     required this.productId,

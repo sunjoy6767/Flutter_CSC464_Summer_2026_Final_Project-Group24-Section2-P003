@@ -5,21 +5,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 /// app. See the bottom of this file for how to trigger [seedByteShopCatalog]
 /// now that the in-app dev button has been removed.
 ///
-/// Writes directly via the Firestore SDK rather than through
-/// FirestoreService, which is read-only — products are never
-/// created/edited/deleted from the app UI, only by this script.
-///
-/// Prices are BDT estimates grounded in mid-2026 Bangladesh retail listings
-/// (Star Tech, Ryans, BDStall) for comparable models, not invented figures.
-///
-/// Image URLs are real photos from images.unsplash.com (direct CDN links,
-/// no API key needed) — generic tech-accessory shots picked to match each
-/// product's category/type, not the exact branded item. Every URL below was
-/// verified to resolve with a 200 and an image/jpeg content-type before
-/// being added here.
-///
-/// Running this more than once will create duplicate documents, since each
-/// call just appends new products rather than upserting.
+
 Future<void> seedByteShopCatalog() async {
   final products = FirebaseFirestore.instance.collection('products');
   for (final product in _seedProducts) {

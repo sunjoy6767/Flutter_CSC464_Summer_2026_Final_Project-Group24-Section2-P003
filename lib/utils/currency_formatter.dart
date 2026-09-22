@@ -1,4 +1,4 @@
-/// Formats [amount] as Bangladeshi Taka, e.g. `formatBdt(4500)` -> "৳ 4,500".
+/// Formats [amount] as Bangladeshi Taka.
 ///
 /// Whole amounts are shown with no decimal places; fractional amounts show
 /// exactly two. Digits are grouped in standard thousands (not lakh/crore)

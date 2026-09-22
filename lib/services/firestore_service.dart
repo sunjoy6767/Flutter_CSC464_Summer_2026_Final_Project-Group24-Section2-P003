@@ -2,33 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 import '../models/order_model.dart';
 
-/// Firestore schema — collection: "products"
-///
-/// products/{productId}
-///   name        : string   — product name, e.g. "Wireless Mouse"
-///   category    : string   — e.g. "Electronics"
-///   price       : number   — unit price in BDT (e.g. 1250.0)
-///   description : string   — short product description
-///   imageUrl    : string   — remote image URL (e.g. Unsplash) or
-///                            placeholder/asset path
-///
-/// {productId} is the Firestore-generated document ID; it is not stored
-/// as a field inside the document itself.
-///
-/// Read-only: products are never created/edited/deleted from the app UI —
-/// they only get into Firestore via the seed script
-/// (lib/utils/seed_data.dart).
-///
-/// Firestore schema — collection: "orders"
-///
-/// orders/{orderId}
-///   customerName    : string
-///   customerPhone   : string
-///   customerAddress : string
-///   items           : [ { productId, name, quantity, price } ]
-///   total           : number
-///   status          : string — "placed" on creation
-///   createdAt       : timestamp — server time, set on creation
+/// A service for interacting with the Firestore database.
 class FirestoreService {
   FirestoreService({FirebaseFirestore? firestore})
     : _firestore = firestore ?? FirebaseFirestore.instance;
@@ -56,7 +30,7 @@ class FirestoreService {
   /// Streams live updates for the full orders collection, newest first.
   Stream<QuerySnapshot<Map<String, dynamic>>> streamOrders() {
     return _orders.orderBy('createdAt', descending: true).snapshots();
-  }
+  } 
 
   /// Creates a new order document. Returns the generated order ID.
   Future<String> placeOrder({
